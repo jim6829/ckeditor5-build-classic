@@ -5,7 +5,7 @@ import UpcastWriter from '@ckeditor/ckeditor5-engine/src/view/upcastwriter';
 import env from '@ckeditor/ckeditor5-utils/src/env';
 
 import FileUploadCommand from './fileuploadcommand';
-import { fetchLocalImage, isLocalImage } from '@ckeditor/ckeditor5-image/src/imageupload/utils';
+import { fetchLocalImage, isLocalImage, isImageType } from '@ckeditor/ckeditor5-image/src/imageupload/utils';
 
 export default class FileUploadEditing extends Plugin {
 	static get requires() {
@@ -179,7 +179,12 @@ export default class FileUploadEditing extends Plugin {
 			.then( data => {
 				model.enqueueChange( 'transparent', writer => {
 					// TODO: href correction
-					writer.setAttributes( { uploadStatus: 'complete', /*src: data.default,*/ href: 'https://naver.com' }, imageElement );
+					if ( isImageType( { type: data.type } ) ) {
+						writer.setAttributes( { uploadStatus: 'complete', src: data.default, href: data.default }, imageElement );
+					}
+					else {
+						writer.setAttributes( { uploadStatus: 'complete', href: data.default }, imageElement );
+					}
 					this._parseAndSetSrcsetAttributeOnImage( data, imageElement, writer );
 				} );
 

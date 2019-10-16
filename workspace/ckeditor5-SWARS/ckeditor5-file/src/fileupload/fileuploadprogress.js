@@ -6,6 +6,7 @@ import uploadingPlaceholder from '@ckeditor/ckeditor5-image/theme/icons/image_pl
 import env from '@ckeditor/ckeditor5-utils/src/env';
 
 import { isImageType } from '@ckeditor/ckeditor5-image/src/imageupload/utils';
+import sampleImage from '../../theme/icons/docx.png';
 
 import '@ckeditor/ckeditor5-image/theme/imageuploadprogress.css';
 import '@ckeditor/ckeditor5-image/theme/imageuploadicon.css';
@@ -235,20 +236,26 @@ function _removeUIElement( viewFigure, writer, uniqueProperty ) {
 // @param {module:engine/view/downcastwriter~DowncastWriter} writer
 // @param {module:upload/filerepository~FileLoader} loader
 function _displayLocalImage( viewFigure, writer, loader, modelImage, model ) {
-	loader.file.then( file => {
-		if ( isImageType( file ) && loader.data ) {
-		// if ( _getExtension( file.name ) === '.jpg' && loader.data ) {
-			const viewImg = viewFigure.getChild( 0 );
+	if ( loader.data ) {
+		loader.file.then( file => {
+			const viewImage = viewFigure.getChild( 0 );
 
-			writer.setAttribute( 'src', loader.data, viewImg );
-		}
+			if ( isImageType( file ) ) {
+				writer.setAttribute( 'src', loader.data, viewImage );
+			} else {
+				// writer.setAttribute( 'src', sampleImage, viewImage );
+				_displayFileExtensionImage( modelImage, model );
+			}
 
-		model.change( writer => {
-			writer.appendText( file.name, modelImage.getChild( 0 ) );
+			model.change( writer => {
+				writer.appendText( file.name, modelImage.getChild( 0 ) );
+			} );
 		} );
-	} );
+	}
 }
 
-function _getExtension( fileName ) {
-	return fileName.substring( fileName.lastIndexOf( '.' ), fileName.length ).toLowerCase();
+function _displayFileExtensionImage( modelImage, model ) {
+	model.enqueueChange( 'transparent', writer => {
+		writer.setAttribute( 'src', sampleImage, modelImage );
+	} );
 }

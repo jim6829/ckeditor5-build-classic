@@ -81,6 +81,14 @@ module.exports = {
 						} )
 					},
 				]
+			},
+			{
+				test: /\.(png|jpe?g|gif|bmp)$/i,
+				use: [
+					{
+						loader: 'url-loader'
+					}
+				]
 			}
 		]
 	}
