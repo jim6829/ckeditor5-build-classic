@@ -1,4 +1,4 @@
-import extCDA from '../../theme/file-extensions/cda3.png';
+import extCDA from '../../theme/file-extensions/cda.png';
 import extETC from '../../theme/file-extensions/etc.png';
 
 export function getFileExtensionImage( fileName ) {
