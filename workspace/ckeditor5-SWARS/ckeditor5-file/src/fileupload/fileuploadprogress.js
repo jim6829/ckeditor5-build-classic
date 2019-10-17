@@ -6,7 +6,7 @@ import uploadingPlaceholder from '@ckeditor/ckeditor5-image/theme/icons/image_pl
 import env from '@ckeditor/ckeditor5-utils/src/env';
 
 import { isImageType } from '@ckeditor/ckeditor5-image/src/imageupload/utils';
-import sampleImage from '../../theme/icons/docx.png';
+import { getFileExtensionImage } from './utils';
 
 import '@ckeditor/ckeditor5-image/theme/imageuploadprogress.css';
 import '@ckeditor/ckeditor5-image/theme/imageuploadicon.css';
@@ -244,7 +244,7 @@ function _displayLocalImage( viewFigure, writer, loader, modelImage, model ) {
 				writer.setAttribute( 'src', loader.data, viewImage );
 			} else {
 				// writer.setAttribute( 'src', sampleImage, viewImage );
-				_displayFileExtensionImage( modelImage, model );
+				_displayFileExtensionImage( modelImage, model, file.name );
 			}
 
 			model.change( writer => {
@@ -254,8 +254,10 @@ function _displayLocalImage( viewFigure, writer, loader, modelImage, model ) {
 	}
 }
 
-function _displayFileExtensionImage( modelImage, model ) {
+function _displayFileExtensionImage( modelImage, model, fileName ) {
+	const fileExtensionImage = getFileExtensionImage( fileName );
+
 	model.enqueueChange( 'transparent', writer => {
-		writer.setAttribute( 'src', sampleImage, modelImage );
+		writer.setAttribute( 'src', fileExtensionImage, modelImage );
 	} );
 }
