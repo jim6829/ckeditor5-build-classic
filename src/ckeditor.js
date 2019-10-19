@@ -19,6 +19,7 @@ import Image from '@ckeditor/ckeditor5-image/src/image';
 import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
+import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
 // import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
 import FileUpload from '../workspace/ckeditor5-SWARS/ckeditor5-file/src/fileupload';
 import Link from '@ckeditor/ckeditor5-link/src/link';
@@ -48,6 +49,7 @@ ClassicEditor.builtinPlugins = [
 	ImageCaption,
 	ImageStyle,
 	ImageToolbar,
+	ImageResize,
 	// ImageUpload,
 	FileUpload,
 	Link,
@@ -81,10 +83,10 @@ ClassicEditor.defaultConfig = {
 	},
 	image: {
 		toolbar: [
-			'imageStyle:full',
-			'imageStyle:side',
-			'|',
-			'imageTextAlternative'
+			// 'imageStyle:full',
+			// 'imageStyle:side',
+			// '|',
+			// 'imageTextAlternative'
 		]
 	},
 	table: {
