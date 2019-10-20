@@ -258,6 +258,9 @@ function _displayFileExtensionImage( modelImage, model, fileName ) {
 	const fileExtensionImage = getFileExtensionImage( fileName );
 
 	model.enqueueChange( 'transparent', writer => {
-		writer.setAttribute( 'src', fileExtensionImage, modelImage );
+		writer.setAttributes( {
+			src: fileExtensionImage,
+			width: '100%'
+		}, modelImage );
 	} );
 }
