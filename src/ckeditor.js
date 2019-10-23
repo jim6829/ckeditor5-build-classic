@@ -22,6 +22,7 @@ import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
 // import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
 import FileUpload from '../workspace/ckeditor5-SWARS/ckeditor5-file/src/fileupload';
+import ImageEdit from '../workspace/ckeditor5-SWARS/ckeditor5-image/src/imageedit';
 import Link from '@ckeditor/ckeditor5-link/src/link';
 import List from '@ckeditor/ckeditor5-list/src/list';
 import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
@@ -52,6 +53,7 @@ ClassicEditor.builtinPlugins = [
 	ImageResize,
 	// ImageUpload,
 	FileUpload,
+	ImageEdit,
 	Link,
 	List,
 	MediaEmbed,
@@ -74,6 +76,7 @@ ClassicEditor.defaultConfig = {
 			'numberedList',
 			// 'imageUpload',
 			'fileUpload',
+			'imageEdit',
 			'blockQuote',
 			'insertTable',
 			'mediaEmbed',
