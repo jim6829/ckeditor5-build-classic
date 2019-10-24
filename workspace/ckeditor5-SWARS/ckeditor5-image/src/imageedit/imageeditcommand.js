@@ -29,6 +29,9 @@ function uploadImage( model, fileRepository, file ) {
 
 	loader._adapter.exchangeImage().then( newFile => {
 		fileRepository.destroyLoader( loader );
+		if ( newFile === null ) {
+			return;
+		}
 		const newLoader = fileRepository.createLoader( newFile );
 		model.change( writer => {
 			insertImage( writer, model, { uploadId: newLoader.id } );
